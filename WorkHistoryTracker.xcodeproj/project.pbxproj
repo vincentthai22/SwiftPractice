@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF3A6E081DF0B65500145A24 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E071DF0B65500145A24 /* ButtonTableViewCell.swift */; };
+		BF3A6E0E1DF0DD4D00145A24 /* WorkScheduleCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */; };
+		BF3A6E101DF0E2AA00145A24 /* WorkSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */; };
+		BF3A6E121DF0E77900145A24 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E111DF0E77900145A24 /* DataTableViewCell.swift */; };
+		BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */; };
+		BF3A6E161DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */; };
 		BFABA7DE1DF0A394000F434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA7DD1DF0A394000F434F /* AppDelegate.swift */; };
-		BFABA7E01DF0A394000F434F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA7DF1DF0A394000F434F /* ViewController.swift */; };
 		BFABA7E31DF0A394000F434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFABA7E11DF0A394000F434F /* Main.storyboard */; };
 		BFABA7E61DF0A394000F434F /* WorkHistoryTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFABA7E41DF0A394000F434F /* WorkHistoryTracker.xcdatamodeld */; };
 		BFABA7E81DF0A394000F434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABA7E71DF0A394000F434F /* Assets.xcassets */; };
 		BFABA7EB1DF0A394000F434F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFABA7E91DF0A394000F434F /* LaunchScreen.storyboard */; };
 		BFABA7F61DF0A394000F434F /* WorkHistoryTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA7F51DF0A394000F434F /* WorkHistoryTrackerTests.swift */; };
 		BFABA8011DF0A394000F434F /* WorkHistoryTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA8001DF0A394000F434F /* WorkHistoryTrackerUITests.swift */; };
+		BFABA80F1DF0A3B2000F434F /* WorkHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA80E1DF0A3B2000F434F /* WorkHistoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF3A6E071DF0B65500145A24 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkScheduleCoreData.swift; sourceTree = "<group>"; };
+		BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSchedule.swift; sourceTree = "<group>"; };
+		BF3A6E111DF0E77900145A24 /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
+		BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WorkScheduleManagedObject+CoreDataClass.swift"; path = "../WorkScheduleManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WorkScheduleManagedObject+CoreDataProperties.swift"; path = "../WorkScheduleManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFABA7DA1DF0A394000F434F /* WorkHistoryTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkHistoryTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFABA7DD1DF0A394000F434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFABA7DF1DF0A394000F434F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFABA7E21DF0A394000F434F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFABA7E51DF0A394000F434F /* WorkHistoryTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkHistoryTracker.xcdatamodel; sourceTree = "<group>"; };
 		BFABA7E71DF0A394000F434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +60,7 @@
 		BFABA7FC1DF0A394000F434F /* WorkHistoryTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkHistoryTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFABA8001DF0A394000F434F /* WorkHistoryTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkHistoryTrackerUITests.swift; sourceTree = "<group>"; };
 		BFABA8021DF0A394000F434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFABA80E1DF0A3B2000F434F /* WorkHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkHistoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +112,18 @@
 			isa = PBXGroup;
 			children = (
 				BFABA7DD1DF0A394000F434F /* AppDelegate.swift */,
-				BFABA7DF1DF0A394000F434F /* ViewController.swift */,
 				BFABA7E11DF0A394000F434F /* Main.storyboard */,
 				BFABA7E71DF0A394000F434F /* Assets.xcassets */,
 				BFABA7E91DF0A394000F434F /* LaunchScreen.storyboard */,
 				BFABA7EC1DF0A394000F434F /* Info.plist */,
 				BFABA7E41DF0A394000F434F /* WorkHistoryTracker.xcdatamodeld */,
+				BFABA80E1DF0A3B2000F434F /* WorkHistoryTableViewController.swift */,
+				BF3A6E071DF0B65500145A24 /* ButtonTableViewCell.swift */,
+				BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */,
+				BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */,
+				BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */,
+				BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */,
+				BF3A6E111DF0E77900145A24 /* DataTableViewCell.swift */,
 			);
 			path = WorkHistoryTracker;
 			sourceTree = "<group>";
@@ -262,8 +280,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFABA7E01DF0A394000F434F /* ViewController.swift in Sources */,
+				BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift in Sources */,
+				BF3A6E0E1DF0DD4D00145A24 /* WorkScheduleCoreData.swift in Sources */,
+				BFABA80F1DF0A3B2000F434F /* WorkHistoryTableViewController.swift in Sources */,
+				BF3A6E081DF0B65500145A24 /* ButtonTableViewCell.swift in Sources */,
+				BF3A6E121DF0E77900145A24 /* DataTableViewCell.swift in Sources */,
+				BF3A6E101DF0E2AA00145A24 /* WorkSchedule.swift in Sources */,
 				BFABA7DE1DF0A394000F434F /* AppDelegate.swift in Sources */,
+				BF3A6E161DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift in Sources */,
 				BFABA7E61DF0A394000F434F /* WorkHistoryTracker.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +533,7 @@
 				BFABA8071DF0A394000F434F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFABA8081DF0A394000F434F /* Build configuration list for PBXNativeTarget "WorkHistoryTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +542,7 @@
 				BFABA80A1DF0A394000F434F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BFABA80B1DF0A394000F434F /* Build configuration list for PBXNativeTarget "WorkHistoryTrackerUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +551,7 @@
 				BFABA80D1DF0A394000F434F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

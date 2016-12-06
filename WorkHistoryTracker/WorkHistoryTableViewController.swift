@@ -17,7 +17,7 @@ class WorkHistoryTableViewController : UITableViewController {
     var tableViewData = [[AnyObject]]()
     var buttonSection : Array<Int> = Array(repeating: 0, count : 1)
     var workScheduleSection = [WorkSchedule]()
-    let imageArray = [ #imageLiteral(resourceName: "kanga"), #imageLiteral(resourceName: "dog-1"), #imageLiteral(resourceName: "bunny"), #imageLiteral(resourceName: "snake")]
+    let imageArray = [ #imageLiteral(resourceName: "kanga"), #imageLiteral(resourceName: "dog-1"), #imageLiteral(resourceName: "bunny"), #imageLiteral(resourceName: "snake"), #imageLiteral(resourceName: "squid"), #imageLiteral(resourceName: "shark"), #imageLiteral(resourceName: "turtle")]
     
     //Indexes marking each section
     var buttonSectionIndex : Int?
@@ -25,11 +25,10 @@ class WorkHistoryTableViewController : UITableViewController {
     
     //Add new entry alert box
     let newItemAlertController = UIAlertController(title: "New Work Day", message: "Enter the date and it's respective work schedule", preferredStyle: .alert)
+    let randomizePicturesAlertController = UIAlertController(title: "Randomizer", message: "Randomize all pictures?", preferredStyle: .alert)
     
-    //temporary workschedule object serves to move data into the array
-    //var workDay = WorkScheduleManagedObject()
     var indexPath = IndexPath()         //save index path for editing
-    var isEditingTable : Bool?          //
+    var isEditingTable : Bool?          //controls the actionOK button for editing or new entry
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +42,7 @@ class WorkHistoryTableViewController : UITableViewController {
     }
     
     func setUpAlertBoxes() -> Void{
+        
         self.newItemAlertController.addTextField { (dateTextField) in
             dateTextField.placeholder = "Date"
         }
@@ -64,7 +64,7 @@ class WorkHistoryTableViewController : UITableViewController {
             } else {
                 workDay = self.tableViewData[self.workScheduleSectionIndex!][self.indexPath.row] as? WorkScheduleManagedObject
             }
-            
+            // assign values from textfields
             workDay?.name = "Vincent Thai"
             workDay?.date = self.newItemAlertController.textFields![0].text!
             workDay?.hoursWorked = self.newItemAlertController.textFields![1].text!
@@ -87,15 +87,35 @@ class WorkHistoryTableViewController : UITableViewController {
             for textField in self.newItemAlertController.textFields! {
                 textField.text = ""
             }
-        }) // End of actionOK definition
+        })
+        // End of actionOK definition
         
         let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: {
             (action: UIAlertAction) in print ("cancel has been pressed")
             for textField in self.newItemAlertController.textFields! {
                 textField.text = ""
             }
+            if self.isEditingTable! {
+                self.isEditingTable = false
+            }
         })
         
+        let randomizerActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (action: UIAlertAction) in print ("cancel has been pressed")
+            
+        })
+        //Randomizer OK button handler
+        let randomizerActionOK = UIAlertAction(title: "OK", style: .default, handler: {
+            (action : UIAlertAction) in
+            for workDay in (self.tableViewData[self.workScheduleSectionIndex!] as! [WorkScheduleManagedObject]) {
+                workDay.image = UIImagePNGRepresentation(self.imageArray[Int(arc4random_uniform(UInt32(self.imageArray.count)))]) as NSData?
+                self.tableView.reloadSections(NSIndexSet.init(index: self.workScheduleSectionIndex!) as IndexSet, with: .bottom)
+                self.workScheduleCoreData.save()
+            }
+        })
+        
+        self.randomizePicturesAlertController.addAction(randomizerActionOK)
+        self.randomizePicturesAlertController.addAction(randomizerActionCancel)
         self.newItemAlertController.addAction(actionOK)
         self.newItemAlertController.addAction(actionCancel)
     }
@@ -103,6 +123,9 @@ class WorkHistoryTableViewController : UITableViewController {
     @IBAction func addButton(_ sender: Any) {
         self.newItemAlertController.title = "New Work Day"
         self.present(newItemAlertController, animated: true, completion: nil)
+    }
+    @IBAction func dicebutton(_ sender: UIButton) {
+        self.present(randomizePicturesAlertController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,6 +144,7 @@ class WorkHistoryTableViewController : UITableViewController {
             }
         }
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == self.workScheduleSectionIndex {
             let workDay = self.tableViewData[self.workScheduleSectionIndex!][indexPath.row] as? WorkScheduleManagedObject
@@ -143,22 +167,38 @@ class WorkHistoryTableViewController : UITableViewController {
             self.present(newItemAlertController, animated: true, completion: nil)
         }
     }
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        switch(section){
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        
+//        switch(section){
+//        case self.buttonSectionIndex!:
+//            return "Add new day"
+//        case self.workScheduleSectionIndex!:
+//            return "Work History"
+//        default:
+//            return "Section"
+//        }
+//    }
+//    Creates a view for the section header
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerText = UILabel.init(frame: CGRect(x: 15, y: 0, width: 300, height: 50))
+        let view = UIView.init(frame: CGRect(x: 0, y: 0, width: 500, height: 50))
+        view.backgroundColor = UIColor.groupTableViewBackground
+        switch (section) {
         case self.buttonSectionIndex!:
-            return "Add new day"
+            headerText.text = "Add a new day"
+            break
         case self.workScheduleSectionIndex!:
-            return "Work History"
+            headerText.text = "Work History"
+            break
         default:
-            return "Section"
+            headerText.text = "Section"
+            break
         }
+        view.addSubview(headerText)
+        return view
     }
     
     // MARK: - Table view data source
-    
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.tableViewData.count
     }
@@ -183,13 +223,17 @@ class WorkHistoryTableViewController : UITableViewController {
             cell.nameLabel.text = workDay.name
             cell.dateLabel.text = workDay.date
             cell.hoursWorkedLabel.text = "Hours Worked : \(workDay.hoursWorked!)"
-            DispatchQueue.global(qos: .background).async { //run in background
-                if workDay.image == nil {
-                    workDay.image = UIImagePNGRepresentation(self.imageArray[Int(arc4random_uniform(UInt32(self.imageArray.count)))]) as NSData?
+           // cell.icon.image = UIImage(data: workDay.image as! Data)
+            DispatchQueue.global(qos: .background).async(execute: {
+                let image = UIImage(data: workDay.image as! Data)
+                UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+                let context = UIGraphicsGetCurrentContext()
+                context?.draw((image?.cgImage)!, in: CGRect(x: 0, y: 0, width: (image!.size.width), height: image!.size.height))
+                UIGraphicsEndImageContext()
+                DispatchQueue.main.sync {
+                    cell.icon.image = image
                 }
-                cell.icon.image = UIImage(data: workDay.image as! Data)
-                cell.icon.isHidden = false
-            }
+            })
             return cell
             
         default :
@@ -197,10 +241,11 @@ class WorkHistoryTableViewController : UITableViewController {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DataTableViewCell
             return cell
             
-            
         }
-        
-        
     }
+//    
+//    if workDay.image == nil {
+//    workDay.image = UIImagePNGRepresentation(self.imageArray[Int(arc4random_uniform(UInt32(self.imageArray.count)))]) as NSData?
+//    }
     
 }

@@ -25,8 +25,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mja-cB-cMh">
+                                            <rect key="frame" x="54" y="0.0" width="94" height="71"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="diceButton" image="dice"/>
+                                            <connections>
+                                                <action selector="dicebutton:" destination="Ghk-FW-2cD" eventType="touchUpInside" id="ht5-em-XNR"/>
+                                            </connections>
+                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfK-kt-hMM">
-                                            <rect key="frame" x="176" y="31" width="22" height="22"/>
+                                            <rect key="frame" x="262" y="31" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <action selector="addButton:" destination="Ghk-FW-2cD" eventType="touchUpInside" id="IEV-ib-RZ1"/>
@@ -43,7 +51,7 @@
                                 <rect key="frame" x="0.0" y="113" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L8S-S7-DwA" id="da5-lL-iUZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAo-g6-6Qm">
@@ -92,4 +100,7 @@
             <point key="canvasLocation" x="-138.40000000000001" y="117.39130434782609"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dice" width="162" height="143"/>
+    </resources>
 </document>

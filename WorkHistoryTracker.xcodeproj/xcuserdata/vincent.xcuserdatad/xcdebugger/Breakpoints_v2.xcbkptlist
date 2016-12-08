@@ -120,45 +120,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorkHistoryTracker/WorkHistoryTableViewController.swift"
-            timestampString = "502758530.600427"
+            timestampString = "502927746.480972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WorkHistoryTracker.WorkHistoryTableViewController.tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
-                  moduleName = "WorkHistoryTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vincent/Desktop/WorkHistoryTracker/WorkHistoryTracker/WorkHistoryTableViewController.swift"
-                  timestampString = "502757565.08521"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "5236">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WorkHistoryTracker.WorkHistoryTableViewController.(tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell).(closure #1)"
-                  moduleName = "WorkHistoryTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vincent/Desktop/WorkHistoryTracker/WorkHistoryTracker/WorkHistoryTableViewController.swift"
-                  timestampString = "502757565.088004"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "236">
-               </Location>
-            </Locations>
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "WorkHistoryTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

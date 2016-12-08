@@ -1,10 +1,11 @@
 //
-//  File.swift
+//  WorkHistoryTableViewController.swift
 //  WorkHistoryTracker
 //
 //  Created by Vincent on 12/1/16.
 //  Copyright © 2016 Seven Logics. All rights reserved.
 //
+//  current task: figure out a wait to scroll without rerendering each cell.
 
 import Foundation
 import UIKit
@@ -25,13 +26,14 @@ class WorkHistoryTableViewController : UITableViewController {
     
     //Add new entry alert box
     let newItemAlertController = UIAlertController(title: "New Work Day", message: "Enter the date and it's respective work schedule", preferredStyle: .alert)
-    let randomizePicturesAlertController = UIAlertController(title: "Randomizer", message: "Randomize all pictures?", preferredStyle: .alert)
+    let randomizePicturesAlertController = UIAlertController(title: "Feelin' Lucky?", message: "Randomize all pictures!", preferredStyle: .alert)
     
     var indexPath = IndexPath()         //save index path for editing
     var isEditingTable : Bool?          //controls the actionOK button for editing or new entry
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.isEditingTable = false
         self.buttonSectionIndex = self.tableViewData.count                  //store button section index
         self.tableViewData.append(self.buttonSection as [AnyObject])        //initialize first section of array
@@ -167,20 +169,10 @@ class WorkHistoryTableViewController : UITableViewController {
             self.present(newItemAlertController, animated: true, completion: nil)
         }
     }
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        
-//        switch(section){
-//        case self.buttonSectionIndex!:
-//            return "Add new day"
-//        case self.workScheduleSectionIndex!:
-//            return "Work History"
-//        default:
-//            return "Section"
-//        }
-//    }
-//    Creates a view for the section header
+
+//    Creates a floating view for the section header
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerText = UILabel.init(frame: CGRect(x: 15, y: 0, width: 300, height: 50))
+        let headerText = UILabel.init(frame: CGRect(x: 150, y: 0, width: 300, height: 50))
         let view = UIView.init(frame: CGRect(x: 0, y: 0, width: 500, height: 50))
         view.backgroundColor = UIColor.groupTableViewBackground
         switch (section) {
@@ -206,7 +198,31 @@ class WorkHistoryTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableViewData[section].count
     }
-    
+    override func tableView(_ tableView: UITableView, willDisplay cell2: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == workScheduleSectionIndex {
+            let cell = cell2 as! DataTableViewCell
+            let workDay = self.tableViewData[self.workScheduleSectionIndex!][indexPath.row] as! WorkScheduleManagedObject
+            cell.nameLabel.text = workDay.name
+            cell.dateLabel.text = workDay.date
+            cell.hoursWorkedLabel.text = "Hours Worked : \(workDay.hoursWorked!)"
+            cell.hoursWorkedLabel.textColor = UIColor.red
+            cell.alpha = 1.0
+            DispatchQueue.global(qos: .background).async(execute: {
+                //load image in background thread (heavy lifting)
+                let image = UIImage(data: workDay.image as! Data)
+                DispatchQueue.main.sync {
+                    //load the image using the main thread
+                    cell.icon.image = image
+                }
+            })
+        }
+
+    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cell = self.tableView.cellForRow(at: indexPath)
+//
+//        return (cell?.frame.height)!
+//    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch (indexPath.section) {
@@ -214,26 +230,13 @@ class WorkHistoryTableViewController : UITableViewController {
         case self.buttonSectionIndex! :
             let cellIdentifier = "ButtonTableViewCell"
             let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ButtonTableViewCell
+            cell.alpha = 1.0
             return cell
             
         case self.workScheduleSectionIndex! :
             let cellIdentifier = "DataTableViewCell"
             let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DataTableViewCell
-            let workDay = self.tableViewData[self.workScheduleSectionIndex!][indexPath.row] as! WorkScheduleManagedObject
-            cell.nameLabel.text = workDay.name
-            cell.dateLabel.text = workDay.date
-            cell.hoursWorkedLabel.text = "Hours Worked : \(workDay.hoursWorked!)"
-           // cell.icon.image = UIImage(data: workDay.image as! Data)
-            DispatchQueue.global(qos: .background).async(execute: {
-                let image = UIImage(data: workDay.image as! Data)
-                UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-                let context = UIGraphicsGetCurrentContext()
-                context?.draw((image?.cgImage)!, in: CGRect(x: 0, y: 0, width: (image!.size.width), height: image!.size.height))
-                UIGraphicsEndImageContext()
-                DispatchQueue.main.sync {
-                    cell.icon.image = image
-                }
-            })
+            cell.alpha = 1.0
             return cell
             
         default :
@@ -243,9 +246,26 @@ class WorkHistoryTableViewController : UITableViewController {
             
         }
     }
-//    
+}
+//
 //    if workDay.image == nil {
 //    workDay.image = UIImagePNGRepresentation(self.imageArray[Int(arc4random_uniform(UInt32(self.imageArray.count)))]) as NSData?
 //    }
-    
-}
+//                UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+//                let context = UIGraphicsGetCurrentContext()
+//                context?.draw((image?.cgImage)!, in: CGRect(x: 0, y: 0, width: (image!.size.width), height: image!.size.height))
+//                UIGraphicsEndImageContext()
+//    sets the title for section header but it remains static (not floating).
+//
+//section header (non-floating)
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        switch(section){
+//        case self.buttonSectionIndex!:
+//            return "Add new day"
+//        case self.workScheduleSectionIndex!:
+//            return "Work History"
+//        default:
+//            return "Section"
+//        }
+//    }

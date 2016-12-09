@@ -120,13 +120,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorkHistoryTracker/WorkHistoryTableViewController.swift"
-            timestampString = "502927746.480972"
+            timestampString = "502937281.050709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "WorkHistoryTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

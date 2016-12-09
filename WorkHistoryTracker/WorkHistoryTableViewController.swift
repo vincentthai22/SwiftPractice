@@ -5,7 +5,7 @@
 //  Created by Vincent on 12/1/16.
 //  Copyright © 2016 Seven Logics. All rights reserved.
 //
-//  current task: figure out a wait to scroll without rerendering each cell.
+//  current task: REDO ENTIRE PROJECT IN OBJ C
 
 import Foundation
 import UIKit
@@ -14,6 +14,8 @@ class WorkHistoryTableViewController : UITableViewController {
     // MARK: Properties
     let workScheduleCoreData = WorkScheduleCoreData.init()
     
+    let imageCache = NSCache<NSIndexPath, UIImage>()
+    var defaultCellHeight : CGFloat = 100.0
     //2-D Array which represents the data displayed within the tableview
     var tableViewData = [[AnyObject]]()
     var buttonSection : Array<Int> = Array(repeating: 0, count : 1)
@@ -113,6 +115,7 @@ class WorkHistoryTableViewController : UITableViewController {
                 workDay.image = UIImagePNGRepresentation(self.imageArray[Int(arc4random_uniform(UInt32(self.imageArray.count)))]) as NSData?
                 self.tableView.reloadSections(NSIndexSet.init(index: self.workScheduleSectionIndex!) as IndexSet, with: .bottom)
                 self.workScheduleCoreData.save()
+                self.imageCache.removeAllObjects()
             }
         })
         
@@ -133,6 +136,7 @@ class WorkHistoryTableViewController : UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        self.imageCache.removeAllObjects()
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
@@ -146,7 +150,9 @@ class WorkHistoryTableViewController : UITableViewController {
             }
         }
     }
-    
+    /* Function : tableView didSelectRowAt
+    *  Serves as an onClick listener for the table for row selection. Used for editing.
+    */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == self.workScheduleSectionIndex {
             let workDay = self.tableViewData[self.workScheduleSectionIndex!][indexPath.row] as? WorkScheduleManagedObject
@@ -172,7 +178,7 @@ class WorkHistoryTableViewController : UITableViewController {
 
 //    Creates a floating view for the section header
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerText = UILabel.init(frame: CGRect(x: 150, y: 0, width: 300, height: 50))
+        let headerText = UILabel.init(frame: CGRect(x: 150, y: 0, width: 150, height: 50))
         let view = UIView.init(frame: CGRect(x: 0, y: 0, width: 500, height: 50))
         view.backgroundColor = UIColor.groupTableViewBackground
         switch (section) {
@@ -198,6 +204,13 @@ class WorkHistoryTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tableViewData[section].count
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return defaultCellHeight
+    }
+    
+    /*  Function : tableView willDisplay :
+    *   Renders the cells that are visible on screen. assigning data here is more appropriate because it is what the user is seeing.
+    */
     override func tableView(_ tableView: UITableView, willDisplay cell2: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section == workScheduleSectionIndex {
             let cell = cell2 as! DataTableViewCell
@@ -206,11 +219,19 @@ class WorkHistoryTableViewController : UITableViewController {
             cell.dateLabel.text = workDay.date
             cell.hoursWorkedLabel.text = "Hours Worked : \(workDay.hoursWorked!)"
             cell.hoursWorkedLabel.textColor = UIColor.red
-            cell.alpha = 1.0
-            DispatchQueue.global(qos: .background).async(execute: {
-                //load image in background thread (heavy lifting)
-                let image = UIImage(data: workDay.image as! Data)
-                DispatchQueue.main.sync {
+            
+            DispatchQueue.global(qos: .background).async(execute: {//load image in background thread (heavy lifting)
+                
+                var image : UIImage?  //temporary image variable to hold data on background thread
+                
+                if self.imageCache.object(forKey: indexPath as NSIndexPath) != nil {//if image is stored in cache
+                    print ("Cache accessed")
+                    image = self.imageCache.object(forKey: indexPath as NSIndexPath)  //retrieve from cache
+                } else { //image is not in cache, place into cache and initialize.
+                    image = UIImage(data: workDay.image as! Data)
+                    self.imageCache.setObject(UIImage.init(data:workDay.image as! Data)!, forKey: indexPath as NSIndexPath) //store into cache
+                }
+                DispatchQueue.main.async {
                     //load the image using the main thread
                     cell.icon.image = image
                 }
@@ -218,11 +239,9 @@ class WorkHistoryTableViewController : UITableViewController {
         }
 
     }
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = self.tableView.cellForRow(at: indexPath)
-//
-//        return (cell?.frame.height)!
-//    }
+    /* Function : tableView cellForRowAt
+    *  Initializes cells, should not perform assignments of data here because it will cause the table to render cells that are not visible which will lead to lag.
+    */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch (indexPath.section) {

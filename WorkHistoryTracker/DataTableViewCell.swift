@@ -11,6 +11,7 @@ import Foundation
 
 class DataTableViewCell: UITableViewCell {
 
+    let queue = OperationQueue()
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

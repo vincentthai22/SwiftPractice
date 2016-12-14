@@ -16,6 +16,7 @@ class WorkHistoryTableViewController : UITableViewController {
     
     let imageCache = NSCache<NSIndexPath, UIImage>()
     var defaultCellHeight : CGFloat = 100.0
+    
     //2-D Array which represents the data displayed within the tableview
     var tableViewData = [[AnyObject]]()
     var buttonSection : Array<Int> = Array(repeating: 0, count : 1)
@@ -229,7 +230,7 @@ class WorkHistoryTableViewController : UITableViewController {
                     image = self.imageCache.object(forKey: indexPath as NSIndexPath)  //retrieve from cache
                 } else { //image is not in cache, place into cache and initialize.
                     image = UIImage(data: workDay.image as! Data)
-                    self.imageCache.setObject(UIImage.init(data:workDay.image as! Data)!, forKey: indexPath as NSIndexPath) //store into cache
+                    self.imageCache.setObject(image!, forKey: indexPath as NSIndexPath) //store into cache
                 }
                 DispatchQueue.main.async {
                     //load the image using the main thread
@@ -239,6 +240,7 @@ class WorkHistoryTableViewController : UITableViewController {
         }
 
     }
+    
     /* Function : tableView cellForRowAt
     *  Initializes cells, should not perform assignments of data here because it will cause the table to render cells that are not visible which will lead to lag.
     */

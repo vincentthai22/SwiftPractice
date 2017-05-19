@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+
 class WorkScheduleCoreData {
     static let workHistoryCoreData = WorkScheduleCoreData()
     var appDelegate = UIApplication.shared.delegate as? AppDelegate

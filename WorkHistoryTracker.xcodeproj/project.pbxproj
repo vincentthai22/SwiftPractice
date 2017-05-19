@@ -11,7 +11,7 @@
 		BF3A6E0E1DF0DD4D00145A24 /* WorkScheduleCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */; };
 		BF3A6E101DF0E2AA00145A24 /* WorkSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */; };
 		BF3A6E121DF0E77900145A24 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E111DF0E77900145A24 /* DataTableViewCell.swift */; };
-		BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */; };
+		BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject.swift */; };
 		BF3A6E161DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */; };
 		BFABA7DE1DF0A394000F434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABA7DD1DF0A394000F434F /* AppDelegate.swift */; };
 		BFABA7E31DF0A394000F434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFABA7E11DF0A394000F434F /* Main.storyboard */; };
@@ -45,7 +45,7 @@
 		BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkScheduleCoreData.swift; sourceTree = "<group>"; };
 		BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSchedule.swift; sourceTree = "<group>"; };
 		BF3A6E111DF0E77900145A24 /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
-		BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WorkScheduleManagedObject+CoreDataClass.swift"; path = "../WorkScheduleManagedObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorkScheduleManagedObject.swift; path = ../WorkScheduleManagedObject.swift; sourceTree = "<group>"; };
 		BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WorkScheduleManagedObject+CoreDataProperties.swift"; path = "../WorkScheduleManagedObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFABA7DA1DF0A394000F434F /* WorkHistoryTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkHistoryTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFABA7DD1DF0A394000F434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				BFABA7E41DF0A394000F434F /* WorkHistoryTracker.xcdatamodeld */,
 				BFABA80E1DF0A3B2000F434F /* WorkHistoryTableViewController.swift */,
 				BF3A6E071DF0B65500145A24 /* ButtonTableViewCell.swift */,
-				BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift */,
+				BF3A6E131DF0F38300145A24 /* WorkScheduleManagedObject.swift */,
 				BF3A6E141DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataProperties.swift */,
 				BF3A6E0D1DF0DD4D00145A24 /* WorkScheduleCoreData.swift */,
 				BF3A6E0F1DF0E2AA00145A24 /* WorkSchedule.swift */,
@@ -280,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject+CoreDataClass.swift in Sources */,
+				BF3A6E151DF0F38300145A24 /* WorkScheduleManagedObject.swift in Sources */,
 				BF3A6E0E1DF0DD4D00145A24 /* WorkScheduleCoreData.swift in Sources */,
 				BFABA80F1DF0A3B2000F434F /* WorkHistoryTableViewController.swift in Sources */,
 				BF3A6E081DF0B65500145A24 /* ButtonTableViewCell.swift in Sources */,

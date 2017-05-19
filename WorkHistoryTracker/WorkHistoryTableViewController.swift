@@ -48,6 +48,10 @@ class WorkHistoryTableViewController : UITableViewController {
     
     func setUpAlertBoxes() -> Void{
         
+        self.newItemAlertController.addTextField { (nameTextField) in
+            nameTextField.placeholder="Enter Your Name Here"
+        }
+        
         self.newItemAlertController.addTextField { (dateTextField) in
             dateTextField.placeholder = "Date"
         }
@@ -70,9 +74,13 @@ class WorkHistoryTableViewController : UITableViewController {
                 workDay = self.tableViewData[self.workScheduleSectionIndex!][self.indexPath.row] as? WorkScheduleManagedObject
             }
             // assign values from textfields
-            workDay?.name = "Vincent Thai"
+            workDay?.name = (self.newItemAlertController.textFields![0].text?.characters.count)! > 1 ? self.newItemAlertController.textFields![0].text : "Vincent Thai"
             workDay?.date = self.newItemAlertController.textFields![0].text!
             workDay?.hoursWorked = self.newItemAlertController.textFields![1].text!
+            
+            if workDay?.date == "" {
+                workDay?.date = Date().description.substring(to: Date().description.index(Date().description.startIndex, offsetBy: 10))
+            }
             
             if !self.isEditingTable! { //adding new entry
                 print("new entry: row to be insert \(row)")
@@ -87,6 +95,8 @@ class WorkHistoryTableViewController : UITableViewController {
             }
             self.workScheduleCoreData.save()
             self.isEditingTable = false
+            let numCells = self.tableViewData[1].count
+            self.tableView.setContentOffset(CGPoint.init(x: 0, y: CGFloat.init(numCells) * self.tableView.rowHeight), animated: true)
             
             //reset the boxes
             for textField in self.newItemAlertController.textFields! {

@@ -75,8 +75,8 @@ class WorkHistoryTableViewController : UITableViewController {
             }
             // assign values from textfields
             workDay?.name = (self.newItemAlertController.textFields![0].text?.characters.count)! > 1 ? self.newItemAlertController.textFields![0].text : "Vincent Thai"
-            workDay?.date = self.newItemAlertController.textFields![0].text!
-            workDay?.hoursWorked = self.newItemAlertController.textFields![1].text!
+            workDay?.date = self.newItemAlertController.textFields![1].text!
+            workDay?.hoursWorked = self.newItemAlertController.textFields![2].text!
             
             if workDay?.date == "" {
                 workDay?.date = Date().description.substring(to: Date().description.index(Date().description.startIndex, offsetBy: 10))
@@ -171,11 +171,13 @@ class WorkHistoryTableViewController : UITableViewController {
             for textField in self.newItemAlertController.textFields! {
                 switch index {
                 case 0:
-                    textField.text = workDay?.date
+                    textField.text = workDay?.name
                     break
                 case 1:
-                    textField.text = workDay?.hoursWorked
+                    textField.text = workDay?.date
                     break
+                case 2:
+                    textField.text = workDay?.hoursWorked
                 default: break
                 }
                 index = index+1

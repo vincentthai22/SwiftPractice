@@ -120,13 +120,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorkHistoryTracker/WorkHistoryTableViewController.swift"
-            timestampString = "508353562.46299"
+            timestampString = "521742357.41306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "tableView(_:heightForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "WorkHistoryTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WorkHistoryTracker/WorkHistoryTableViewController.swift"
-            timestampString = "508353562.46299"
+            timestampString = "521742357.41306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "tableView(_:willDisplay:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
